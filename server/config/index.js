@@ -7,13 +7,13 @@ var config = {
         ]
     },
     mysqlPool: {
-        host: '127.0.0.1',   //服务器地址
-        port: 3306,          //数据库端口
-        user: 'root',        //用户名
-        password: '',        //密码
-        database: 'hdl',     //数据库名称
-        connectionLimit: 20, //最大连接数
-        charset: 'utf8'      //编码方式
+        host: '127.0.0.1',          //服务器地址
+        port: 3306,                 //数据库端口
+        user: 'root',               //用户名
+        password: '123456',         //密码
+        database: 'my_manga',       //数据库名称
+        connectionLimit: 20,        //最大连接数
+        charset: 'utf8'             //编码方式
     },
     logo: {
         mangaV1: 

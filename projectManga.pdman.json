@@ -120,7 +120,15 @@
           "title": "user_bookshelf",
           "fields": [
             {
-              "name": "u_id",
+              "name": "m_id",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "ID",
+              "notNull": true,
+              "autoIncrement": true
+            },
+            {
+              "name": "m_uid",
               "type": "Integer",
               "remark": "",
               "chnname": "用户ID",
@@ -220,41 +228,6 @@
             }
           ],
           "chnname": "用户书架&历史"
-        },
-        {
-          "title": "user_history",
-          "fields": [
-            {
-              "name": "REVISION",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "乐观锁"
-            },
-            {
-              "name": "CREATED_BY",
-              "type": "IdOrKey",
-              "remark": "",
-              "chnname": "创建人"
-            },
-            {
-              "name": "CREATED_TIME",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "创建时间"
-            },
-            {
-              "name": "UPDATED_BY",
-              "type": "IdOrKey",
-              "remark": "",
-              "chnname": "更新人"
-            },
-            {
-              "name": "UPDATED_TIME",
-              "type": "DateTime",
-              "remark": "",
-              "chnname": "更新时间"
-            }
-          ]
         }
       ],
       "graphCanvas": {
@@ -276,41 +249,9 @@
             "id": "fa3975e7"
           }
         ],
-        "edges": [
-          {
-            "shape": "erdRelation",
-            "relation": "0,n:1",
-            "source": "b8be93c1",
-            "target": "fa3975e7",
-            "id": "708ead62",
-            "controlPoints": [
-              {
-                "x": 451.3623046875,
-                "y": 122.17857142857143
-              },
-              {
-                "x": 553.6474609375,
-                "y": 182.19736842105263
-              }
-            ],
-            "sourceAnchor": 1,
-            "targetAnchor": 0
-          }
-        ]
+        "edges": []
       },
-      "associations": [
-        {
-          "relation": "0,n:1",
-          "from": {
-            "entity": "user_info",
-            "field": "u_id"
-          },
-          "to": {
-            "entity": "user_bookshelf",
-            "field": "u_id"
-          }
-        }
-      ]
+      "associations": []
     }
   ],
   "dataTypeDomains": {
