@@ -5,27 +5,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    defaultLocalUrl: 'http://localhost:8088/',
-    currentMangaHost: 'www.manga2022.com',
+    defaultLocalUrl: 'http://localhost:8088',
+    currentMangaHost: 'mapi.hotmangasg.com:12001',
     mangaHostGroup: [],
 
   },
   getters: {
   },
   mutations: {
-    // 请求网络通信地址
-    getAvailableHost() {
-      console.log('start VueX Function <getAvailableHost>')
-      let url = this.state.currentMangaHost + 'api/v3/system/network2?platform=1'
-      this.$axios.get(url)
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err); 
-      })
-
-    },
+    updateMangaHostGroup(state, arr){
+      state.mangaHostGroup = arr
+      console.log('PPP',arr, state.mangaHostGroup)
+    }
     
   },
   actions: {

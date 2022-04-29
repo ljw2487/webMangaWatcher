@@ -1,3 +1,4 @@
+const config = require('./config')
 const express = require('express')
 const https = require("https")
 const router = express.Router()

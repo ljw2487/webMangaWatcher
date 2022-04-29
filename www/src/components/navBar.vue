@@ -96,7 +96,7 @@
                 </van-row>
 
             </div>
-            <van-button @click="abcd">111111111111111111111111111</van-button>
+            <van-button >111111111111111111111111111</van-button>
         </van-popup>
         <van-popup 
             v-model="navIcon_left"
@@ -120,7 +120,7 @@
                 value: '',
                 hasTaxt: false,
                 navIcon_left: false,
-                navIcon_right: true,    // 默认是false
+                navIcon_right: false,    // 默认是false
                 // 显示方式 [序号，文本，图标名]
                 style: [
                     [0, '单列', 'oneRow'], 
@@ -133,7 +133,6 @@
                     show: 1,
                     row: '',
                 },
-                // mangaHost: '123',
             }
         },
         methods: {
@@ -167,20 +166,6 @@
                 this.filter.show = item[0]
                 // console.log(item[0], this.filter);
             },
-            // abcd(){
-            //     console.log('开始')
-            //     let url = 'https://mapi.hotmangasg.com:12001/api/v3/system/network2?platform=1'
-            //     axios.get(url)
-            //     .then(res => {
-            //         console.log(res)
-            //     })
-            //     .catch(err => {
-            //         console.error(err); 
-            //     })
-            // },
-            abcd(){
-
-            },
         },
         mounted() {
             console.log(this.defaultLocalUrl)
@@ -192,12 +177,7 @@
             ])
         },
         watch: {
-            // navIcon_left(newValue, oldValue) {
-            //     if (newValue == true && this.navIcon_right == true) {
-            //         this.navIcon_right = false
-            //         console.log('rightIcon = ', this.navIcon_right);
-            //     }
-            // }
+
         },
     }
 

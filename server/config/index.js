@@ -6,6 +6,18 @@ var config = {
             'http://127.0.0.1:8080'
         ]
     },
+    mangaHOST: {
+        group1: [
+            'mapi.hotmangasg.com:12001',
+            'mapi.hotmangasd.com:12001',
+            'mapi.hotmangasf.com:12001'
+        ],
+        group2: [
+            'mapi.elfgjfghkk.club',
+            'mapi.fgjfghkkcenter.club',
+            'mapi.fgjfghkk.club'
+        ]
+    },
     mysqlPool: {
         host: '127.0.0.1',          //服务器地址
         port: 3306,                 //数据库端口
