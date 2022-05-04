@@ -23,29 +23,29 @@ npm run serve
 
 ```
 .
-├── server                  # 后端
-│   ├── config              # 配置文件
-│   ├── routes              # 接口
+├── server                      # 后端
+│   ├── config                  # 配置文件
+│   ├── routes                  # 接口
 │   ├── ...
-│   └── app.js              # 主程序
-├── www                     # 前端
-│   ├── src                 # 资源目录
-│   │   ├── api             # axios二次封装
-│   │   ├── assets          # 静态资源
+│   └── app.js                  # 主程序
+├── www                         # 前端
+│   ├── src                     # 资源目录
+│   │   ├── api                 # axios二次封装
+│   │   ├── assets              # 静态资源
 │   │   │	├── ...
 │   │   │	└── iconfont    # 阿里图标字体
-│   │   ├── components      # 自定义组件
-│   │   ├── router          # vue-router
-│   │   ├── store           # vuex
-│   │   ├── utils           # 第三方组件
-│   │   ├── views           # 页面资源
+│   │   ├── components          # 自定义组件
+│   │   ├── router              # vue-router
+│   │   ├── store               # vuex
+│   │   ├── utils               # 第三方组件
+│   │   ├── views               # 页面资源
 │   │   ├── ...
 │   │   └── App.vue	        # 主程序
 │   ├── ...
-│   └── vue.config.js       # vue配置文件 (less)
-├── db.sql                  # mysql测试文件
-├── projectManga.pdman.json # pdman存档
-└── README.md               # 说明文档
+│   └── vue.config.js           # vue配置文件 (less)
+├── db.sql                      # mysql测试文件
+├── projectManga.pdman.json     # pdman存档
+└── README.md                   # 说明文档
 ```
 
 
@@ -55,3 +55,17 @@ npm run serve
 - ~~vant搜索框去掉了padding属性，通过less-loader，在vue.config.js中配置 (已作废)~~
 - less插件可能也不需要
 - 搭配vantUi，使用了iconfont的自定义图标<a src='https://www.csdn.net/tags/Mtzagg0sNjIzMy1ibG9n.html'>参考教程</a>
+
+
+#### todo List
+
+- [x] 完成前后端基本框架
+- [x] sql格式
+- [x] 完成第三方接口调用
+- [ ] 基本页面搭建
+- [ ] 登录功能 & 用户后台
+- [ ] 书架 & 阅读模块
+- [ ] addon-无痕切换章节
+- [ ] addon-书架展示最后阅读
+- [ ] addon-书签跳转具体页码
+- [ ] ...
