@@ -1,5 +1,4 @@
-const config = require('./config')
-const express = require('express')
+const express = require("express")
 const https = require("https")
 const router = express.Router()
 
@@ -32,5 +31,8 @@ router.get('/network', (req, res) => {
     })
     request.end()
 })
+
+
+
 
 module.exports = router

@@ -15,7 +15,7 @@ export default new Vuex.Store({
   mutations: {
     updateMangaHostGroup(state, arr){
       state.mangaHostGroup = arr
-      console.log('PPP',arr, state.mangaHostGroup)
+      // console.log('PPP',arr, state.mangaHostGroup)
     }
     
   },

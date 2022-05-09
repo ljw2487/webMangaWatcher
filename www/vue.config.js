@@ -12,5 +12,16 @@ module.exports = defineConfig({
         }
       }
     }
+  },
+  devServer: {
+    // proxy:{
+    //   '/api': {
+    //     target: 'https://mapi.hotmangasg.com:12001/api/v3',
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/api': ''
+    //     }
+    //   }
+    // }
   }
 })
