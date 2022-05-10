@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import home from '../views/home.vue'
+import welcome from '../views/_welcome.vue';
 import homePage from '../views/0_homePage.vue'
 import bookShelf from '../views/1_bookShelf.vue'
 import myPage from '../views/2_myPage.vue'
+import test from '../views/99_test.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +17,11 @@ const routes = [
   // },
   {
     path: '/',
+    name: 'welcome',
+    component: welcome
+  },
+  {
+    path: '/index',
     name: 'homePage',
     component: homePage
   },
@@ -27,6 +34,11 @@ const routes = [
     path: '/myPage',
     name: 'myPage',
     component: myPage
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: test
   }
   // {
   //   path: '/about',

@@ -6,6 +6,69 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1002514",
+      "name": "首页2",
+      "font_class": "home",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "1002521",
+      "name": "首页",
+      "font_class": "home-o",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "1002511",
+      "name": "我的2",
+      "font_class": "my",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "1002510",
+      "name": "我的",
+      "font_class": "my-o",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "1071059",
+      "name": "展开2",
+      "font_class": "showall",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "4292610",
+      "name": "刷新",
+      "font_class": "refresh",
+      "unicode": "e754",
+      "unicode_decimal": 59220
+    },
+    {
+      "icon_id": "10331069",
+      "name": "new",
+      "font_class": "new",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "24342389",
+      "name": "server host computer-fill",
+      "font_class": "server",
+      "unicode": "ea1f",
+      "unicode_decimal": 59935
+    },
+    {
+      "icon_id": "24342400",
+      "name": "server host computer-line",
+      "font_class": "server-o",
+      "unicode": "ea20",
+      "unicode_decimal": 59936
+    },
+    {
       "icon_id": "4473653",
       "name": "书架（灰）",
       "font_class": "book-o",
@@ -48,9 +111,16 @@
       "unicode_decimal": 59038
     },
     {
+      "icon_id": "29584088",
+      "name": "降序",
+      "font_class": "arrow-up",
+      "unicode": "ecba",
+      "unicode_decimal": 60602
+    },
+    {
       "icon_id": "14181400",
       "name": "降序",
-      "font_class": "myArrow",
+      "font_class": "arrow-down",
       "unicode": "e733",
       "unicode_decimal": 59187
     },

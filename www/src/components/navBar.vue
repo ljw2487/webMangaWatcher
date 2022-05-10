@@ -168,7 +168,7 @@
             },
         },
         mounted() {
-            console.log(this.defaultLocalUrl)
+            // console.log(this.defaultLocalUrl)
             
         },
         computed: {
