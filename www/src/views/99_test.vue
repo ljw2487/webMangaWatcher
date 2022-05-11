@@ -10,61 +10,77 @@
             <div>def</div>
             <div>ghi</div>
         </div>
+        <van-skeleton :row="1" :loading="loading">
+            <div>实际内容</div>
+        </van-skeleton>
     </div>
 </template>
 
 <script>
     export default {
-        setup() {
-        let ipInput = "192.168.1.123"
-        let pings = () => {
-            ping(ipInput)
-        }
-        const ping = (ip) => {
-            var img = new Image()
-            var start = new Date().getTime()
-            let isFlag = false
-            let isCloseWifi = true
-            let isHasFinish = false
-
-            img.onload = function () {
-                if (!isHasFinish) {
-                    isFlag = true
-
-                    isHasFinish = true
-
-                    alert("ping" + ip + "通过------------------")
-                }
+        data() {
+            return {
+                loading: true,
             }
+        },
+        mounted() {
+            this.loading = true;
+        },
+        methods: {
+            getPing() {
+                // setup() {
+                //     let ipInput = "192.168.1.123"
+                //     let pings = () => {
+                //         ping(ipInput)
+                //     }
+                //     const ping = (ip) => {
+                //         var img = new Image()
+                //         var start = new Date().getTime()
+                //         let isFlag = false
+                //         let isCloseWifi = true
+                //         let isHasFinish = false
 
-            img.onerror = function () {
-                if (!isHasFinish) {
-                    if (!isCloseWifi) {
-                        isFlag = true
-                        alert("ping" + ip + "通过------------------")
-                    }
-                    isHasFinish = true
-                }
-            }
+                //         img.onload = function () {
+                //             if (!isHasFinish) {
+                //                 isFlag = true
 
-            setTimeout(function () {
-                isCloseWifi = false
-                console.log("network is working, start ping...")
-            }, 2)
+                //                 isHasFinish = true
 
-            img.src = "http://" + ip + "/" + start
-            var timer = setTimeout(function () {
-                if (!isFlag) {
-                    isHasFinish = true
-                    isFlag = false
-                    console.log("Ping " + ip + " fail. ")
-                    alert("ping" + ip + "失败！！！！！！！！！！！！！！！！")
-                }
-            }, 3000)
-        }
+                //                 alert("ping" + ip + "通过------------------")
+                //             }
+                //         }
 
-        return { ipInput, pings }
-    },
+                //         img.onerror = function () {
+                //             if (!isHasFinish) {
+                //                 if (!isCloseWifi) {
+                //                     isFlag = true
+                //                     alert("ping" + ip + "通过------------------")
+                //                 }
+                //                 isHasFinish = true
+                //             }
+                //         }
+
+                //         setTimeout(function () {
+                //             isCloseWifi = false
+                //             console.log("network is working, start ping...")
+                //         }, 2)
+
+                //         img.src = "http://" + ip + "/" + start
+                //         var timer = setTimeout(function () {
+                //             if (!isFlag) {
+                //                 isHasFinish = true
+                //                 isFlag = false
+                //                 console.log("Ping " + ip + " fail. ")
+                //                 alert("ping" + ip + "失败！！！！！！！！！！！！！！！！")
+                //             }
+                //         }, 3000)
+                //     }
+                //     return { ipInput, pings }
+                // };
+            },
+
+        },
+   
     }
 </script>
 

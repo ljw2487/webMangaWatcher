@@ -9,7 +9,7 @@
                     :show-indicators="false"
                 >
                     <van-swipe-item 
-                        @click="clickBanner(index, item.brief, item.out_uuid)"
+                        @click="clickBanner(index, item.comic.path_word, item.out_uuid)"
                         v-for="(item, index) in banners" 
                         :key="index"
                     >
@@ -23,7 +23,7 @@
                 </div>
                 <div class="recs">
                     <div class="recsTitle">
-                        <div>
+                        <div @click="getAllRecs">
                             <span>精彩推荐&nbsp;</span>
                             <van-icon 
                                 class="iconfont"
@@ -32,13 +32,17 @@
                                 size="19" 
                             />
                         </div>
-                        <div @click="getMoreRecs">
+                        <button @click="getMoreRecs">
                             <span>换一批&nbsp;</span>
-                            <van-icon name="replay" />
-                        </div>
+                            <van-icon name="replay" :class="loadingRecs?'loading':''" />
+                        </button>
                     </div>
                     <div class="recsItems" v-if="loadRecs == 3">
-                        <div v-for="(item, index) in recs.list" :key="index">
+                        <div 
+                            v-for="(item, index) in recs.list" 
+                            :key="index"
+                            @click="getAllRecs(index, item.comic.path_word, item.comic.name)"
+                        >
                             <div class="recsItems_img">
                                 <van-image
                                     :src="item.comic.cover"
@@ -85,12 +89,12 @@
                     <div class="allMangaTitle">
                         <div>
                             <span>漫画列表&nbsp;</span>
-                            <van-icon 
+                            <!-- <van-icon 
                                 class="iconfont"
                                 class-prefix="van-icon"
                                 name="showall" 
                                 size="19" 
-                            />
+                            /> -->
                         </div>
                     </div>
                     <div class="allMangaFilter">
@@ -161,6 +165,7 @@ export default {
             banners: undefined,
             recs: [],
             loadRecs: 0,
+            loadingRecs: false,
             recsOffset: 0,
             hotTheme: undefined,
             ordering: undefined,
@@ -174,6 +179,7 @@ export default {
                 ordering: '-popular',
                 theme: 'all'
             },
+            currentTheme: '',
             mangaPage: 0,
             mangaTotal: undefined,
             mangaList: [],
@@ -218,7 +224,7 @@ export default {
                 .then((res) => {
                     this.banners = res.data.results.banners
                     this.recs = res.data.results.recs
-                    console.log(this.recs)
+                    console.log(this.banners)
                     this.getMangaUpdate()
                     // console.log('Finish -> getBannerAndRecs()')
                 })
@@ -228,7 +234,8 @@ export default {
             )
         },
         getMoreRecs(){
-            console.log('Finish -> getMoreRecs()')
+            console.log('start -> getMoreRecs()')
+            this.loadingRecs = false
             this.loadRecs = 0
             this.recsOffset += 3
             console.log(this.recsOffset)
@@ -236,15 +243,16 @@ export default {
             .then((res) => {
                 // console.log(res)
                 this.recs = res.data.results
+                this.loadingRecs = true
                 this.getMangaUpdate()
-                console.log('Finish -> getMoreRecs()')
+                // console.log('Finish -> getMoreRecs()')
             })
             .catch((err) => {
                 console.log(err)
             })
         },
-        getAllRecs(){
-
+        getAllRecs(index, path, name){
+            console.log(`start -> getAllRecs(${index},${path},${name})`)
         },
         getHotThemes(){
             if (!this.hotTheme == undefined) return
@@ -261,18 +269,24 @@ export default {
             )
         },
         getMangaLists(){
+            console.log(`start -> getMangaLists() -> ${this.filter.theme}${this.filter.ordering}`)
             let ordering = `&ordering=${this.filter.ordering}`
             let theme = ''
             if (this.filter.theme != 'all' && this.filter.theme != 'more') {
                 theme = `&theme=${this.filter.theme}`
             }
+            if (this.currentTheme != this.filter.theme) {
+                this.mangaPage = 0
+            } else {
+                this.currentTheme = this.filter.theme
+            }
             if (this.mangaTotal != undefined && this.mangaPage*21 > this.mangaTotal) {
-                console.log('超出数量')
+                return console.log('超出数量')
             }
             let tag = `&limit=21&offset=${this.mangaPage}${theme}${ordering}`
             this.axios.get(`https://${this.currentMangaHost}/api/v3/comics?free_type=1${tag}&_update=true`)
             .then((res) => {
-                // console.log(res)
+                console.log(res)
                 this.mangaPage = res.data.results.limit + res.data.results.offset
                 this.mangaList = res.data.results.list
                 // this.recs = res.data.results
@@ -295,15 +309,15 @@ export default {
                     this.recs.list[index].comic.last_chapter = lastChar
                     this.recs.list[index].comic.datetime_updated = lastTime
                     this.loadRecs += 1
-                    console.log( this.recs.list[index].comic )
+                    // console.log( this.recs.list[index].comic )
                 })
                 .catch((err) => {
                     console.log(err)
                 })
             })
         },
-        clickBanner(index, brief, uuid){
-            console.log(index, brief, uuid)
+        clickBanner(index, path, uuid){
+            console.log(index, path, uuid)
         },
         hotNum(num) {
             if (num >= 1e3 && num < 1e4) {
@@ -336,7 +350,8 @@ export default {
                 this.filter.theme = 'more'
                 this.activeTheme = 99
             }
-            console.log(`fun=clickTheme -> [filter] theme=${this.filter.theme} datetime=${this.filter.ordering}`);
+            console.log(`fun=clickTheme -> [filter] theme=${this.filter.theme} datetime=${this.filter.ordering}`)
+            this.getMangaLists()
             return
         },
         clickOrdering(index) {
@@ -357,7 +372,8 @@ export default {
                 
             }
             this.filter.ordering = `${order}${this.activeOrdering}`
-            console.log(`fun=clickOrdering -> [filter] theme=${this.filter.theme} datetime=${this.filter.ordering}`);
+            console.log(`fun=clickOrdering -> [filter] theme=${this.filter.theme} datetime=${this.filter.ordering}`)
+            this.getMangaLists()
             return
         },
     },
@@ -446,9 +462,19 @@ export default {
                 transform: translateY(-50.5%);
             }
         }
-        &>div:last-child {
+        &>button:last-child {
+            padding: 0;
+            border: 0;
+            background-color: rgba(0, 0, 0, 0);
             color: #777777;
             line-height: 1.8rem;
+        }
+        .loading {
+            animation: 2s loading 1;
+        }
+        @keyframes loading {
+            0%{transform: rotateZ(0deg);}
+            100%{transform: rotateZ(360deg);}
         }
     }
     .recsItems {
@@ -456,7 +482,7 @@ export default {
         justify-content: space-between;
         margin-bottom: 1rem;
         &>div {
-            width: 8rem;
+            width: 32%;
             border-radius: 5px;
             background-color: #2E2E2E;
             .recsItems_img {
@@ -464,6 +490,7 @@ export default {
                 overflow: hidden;
                 position: relative;
                 border-radius: 5px 5px 0 0;
+                background-color: #333333;
                 &>.recsItems_pop {
                     position: absolute;
                     padding: 1px 6px;
@@ -472,7 +499,7 @@ export default {
                     font-size: 12px;
                     color: #BBBBBB;
                     border-radius: 0 4px 0 5px;
-                    background-color: rgba($color: #000000, $alpha: 0.8);
+                    background-color: rgba($color: #000000, $alpha: 0.75);
                 }
                 &>.recsItems_time {
                     position: absolute;
@@ -482,7 +509,7 @@ export default {
                     font-size: 12px;
                     color: #BBBBBB;
                     border-radius: 0 5px 0 0;
-                    background-color: rgba($color: #000000, $alpha: 0.8);
+                    background-color: rgba($color: #000000, $alpha: 0.75);
                 }
             }
             .recsItems_info {
@@ -578,7 +605,7 @@ export default {
             justify-content: space-between;
             &>div {
                 padding: 0.35rem;
-                width: 10.5rem;
+                width: 45%;
                 text-align: center;
                 color: #777777;
                 background-color: #3b3b3b;
