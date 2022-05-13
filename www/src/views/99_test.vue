@@ -13,14 +13,27 @@
         <van-skeleton :row="1" :loading="loading">
             <div>实际内容</div>
         </van-skeleton>
+        <button @click="getsetu">rank</button>
+        <button @click="getLoli">tag</button>
+        <div
+            class="class1"
+            :class=" selected==activited ? 'class2' : '' "
+        >666</div>
+        <van-image
+            :src="imgUrl"
+        />
     </div>
 </template>
 
 <script>
+import { mapState } from "vuex"
     export default {
         data() {
             return {
                 loading: true,
+                selected: true,
+                activited: true,
+                imgUrl: '',
             }
         },
         mounted() {
@@ -78,7 +91,83 @@
                 //     return { ipInput, pings }
                 // };
             },
+            getsetu() {
+                // From: https://pixivic.com/
+                // Host: https://api.huisq.site/ranks?page=1&date=2022-05-13&mode=day&pageSize=30
+                let date = new Date(new Date().setDate(new Date().getDate() - 2)) // 两天前
+                let month = date.getMonth()+1
+                let dateFormat = `${date.getFullYear()}-${month < 10 ? '0' + month : month}-${date.getDate()}`
+                this.axios.get(
+                    `${this.defaultLocalUrl}/pixiv/rank`,
+                    {params:{
+                        page: 1,
+                        date: dateFormat,
+                        mode: "day",
+                        pageSize: 10
+                    }}
+                )
+                .then(res => {
+                    let data = res.data.data
+                    let totalNum = data.length
+                    let selectedNum = Math.ceil(Math.random()*totalNum)
+                    if (selectedNum > 1) selectedNum = selectedNum-2
+                    let imgUrl = data[selectedNum].imageUrls[0]
+                    if (data[selectedNum].height <= 1920) {
+                        imgUrl = imgUrl.original
+                    } else {
+                        imgUrl = imgUrl.large
+                    }
+                    let arr = imgUrl.split('i.pximg.net')
+                    let finalUrl
+                    if (arr.length == 2) {
+                        finalUrl = `${arr[0]}i.pixiv.cat${arr[1]}`
+                    } else {
+                        console.log('Url错误', arr)
+                        finalUrl = 'https://i.pixiv.cat/img-original/img/2022/05/07/01/53/50/98160193_p0.jpg'
+                    }
+                    arr = undefined
+                    console.log(
+                        'Rank:',
+                        totalNum,
+                        selectedNum, 
+                        `[pid:${data[selectedNum].id}], [title:${data[selectedNum].title}]`
+                    )
+                    this.imgUrl = finalUrl
+                })
+                .catch(err => {
+                    console.error(err); 
+                })
+            },
+            getLoli() {
+                this.axios.get(
+                    `${this.defaultLocalUrl}/pixiv/lolicon`, 
+                    {params: {
+                        tag: [
+                            "ロリ|萝莉|贫乳",
+                            "白丝|黑丝"
+                        ],
+                        size: "regular",
+                    }}
+                )
+                .then((res) => {
+                    this.imgUrl = res.data.data[0].urls.regular
+                    console.log(
+                        'Lolicon:',
+                        `[pid:${res.data.data[0].pid}], [title:${res.data.data[0].title}]`
+                    )
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+            }
 
+        },
+        computed: {
+            ...mapState([
+                "currentMangaHost", 
+                'defaultLocalUrl', 
+                'mangaHostGroup'
+            ]),
         },
    
     }
@@ -110,5 +199,12 @@
         width: 100px;
         text-align: center;
     }
+}
+.class1 {
+    width: 100px;
+    height: 100px;
+}
+.class2 {
+    background-color: greenyellow;
 }
 </style>

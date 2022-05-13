@@ -15,7 +15,8 @@ const key = 'my key'
 const app = express()
 
 let network = require('./routes/network')
-// let thirdparty = require('./routes/thirdparty')
+let thirdparty = require('./routes/thirdparty')
+let pixiv = require('./routes/pixiv')
 
 // 方法
 app.use(cors( config.allowCORS ))
@@ -24,7 +25,8 @@ app.use(express.json())
 app.use(express.static('public'))
 
 app.use('/', network)
-// app.use('/', thirdparty)
+app.use('/', thirdparty)
+app.use('/pixiv', pixiv)
 
 // JWT //////////////////////
 app.get('/gettoken', (req, res) => {
@@ -48,6 +50,8 @@ app.get('/verifytoken', (req, res) => {
 })
 
 // API ////////////////////
+
+
 
 // app.get('/homepage', (req, res) => {
 //     let host = req.query.currentHost

@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import home from '../views/home.vue'
 import welcome from '../views/_welcome.vue';
-import homePage from '../views/0_homePage.vue'
+import login from '../views/0.0_login.vue'
+import homePage from '../views/0.1_homePage.vue'
 import bookShelf from '../views/1_bookShelf.vue'
 import myPage from '../views/2_myPage.vue'
 import test from '../views/99_test.vue'
@@ -19,6 +20,11 @@ const routes = [
     path: '/',
     name: 'welcome',
     component: welcome
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: login
   },
   {
     path: '/index',
