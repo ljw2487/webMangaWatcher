@@ -46,5 +46,27 @@ router.get('/lolicon', (req, res) => {
     })
 })
 
+// 用于生成图片base64传到前端
+router.post('/imgurl', (req, res) => {
+    let host = req.body.host
+    let path = (req.body.url).split('i.pixiv.cat')[1]
+    console.log(host, path)
+
+    HttpsClient.get({
+        host,
+        path,
+        headers: {
+            // 'content-type': 'application/json; charset=utf-8',
+            'access-control-allow-origin': 'pixiviz.pwp.app',
+            'Referer': 'https://pixiviz.pwp.app/',
+        },
+    }).then(data => {
+        // console.log(data)
+        res.send(data)
+    })
+
+    // res.send('ok')
+})
+
 
 module.exports = router

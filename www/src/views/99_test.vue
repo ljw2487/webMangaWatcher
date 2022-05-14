@@ -19,9 +19,11 @@
             class="class1"
             :class=" selected==activited ? 'class2' : '' "
         >666</div>
-        <van-image
+        <!-- <van-image
             :src="imgUrl"
-        />
+        /> -->
+        <img :src="imgUrl" alt="" style="width: 100px; height: 100px; background-color: brown;">
+        <!-- <img referer="https://pixivic.com/" src="https://o.acgpic.net/img-original/img/2022/05/10/00/23/01/98238060_p0.jpg"> -->
     </div>
 </template>
 
@@ -97,15 +99,14 @@ import { mapState } from "vuex"
                 let date = new Date(new Date().setDate(new Date().getDate() - 2)) // 两天前
                 let month = date.getMonth()+1
                 let dateFormat = `${date.getFullYear()}-${month < 10 ? '0' + month : month}-${date.getDate()}`
-                this.axios.get(
-                    `${this.defaultLocalUrl}/pixiv/rank`,
-                    {params:{
+                this.axios.get(`${this.defaultLocalUrl}/pixiv/rank`, {
+                    params:{
                         page: 1,
                         date: dateFormat,
                         mode: "day",
                         pageSize: 10
-                    }}
-                )
+                    }
+                })
                 .then(res => {
                     let data = res.data.data
                     let totalNum = data.length
@@ -132,32 +133,54 @@ import { mapState } from "vuex"
                         selectedNum, 
                         `[pid:${data[selectedNum].id}], [title:${data[selectedNum].title}]`
                     )
-                    this.imgUrl = finalUrl
+                    // this.imgUrl = finalUrl
+                    let pixivCat = finalUrl
+                    this.getImgURL(pixivCat)
                 })
                 .catch(err => {
                     console.error(err); 
                 })
             },
             getLoli() {
-                this.axios.get(
-                    `${this.defaultLocalUrl}/pixiv/lolicon`, 
-                    {params: {
+                this.axios.get(`${this.defaultLocalUrl}/pixiv/lolicon`, {
+                    params: {
                         tag: [
                             "ロリ|萝莉|贫乳",
                             "白丝|黑丝"
                         ],
                         size: "regular",
-                    }}
-                )
+                    }
+                })
                 .then((res) => {
-                    this.imgUrl = res.data.data[0].urls.regular
+                    // this.imgUrl = res.data.data[0].urls.regular
+                    let pixivCat = res.data.data[0].urls.regular
                     console.log(
                         'Lolicon:',
                         `[pid:${res.data.data[0].pid}], [title:${res.data.data[0].title}]`
                     )
+                    this.getImgURL(pixivCat)
                 })
                 .catch((err) => {
                     console.error(err)
+                })
+            },
+            getImgURL(imgUrl){
+                console.log(imgUrl)
+                this.axios.post(`${this.defaultLocalUrl}/pixiv/imgurl`, {
+                    url: imgUrl,
+                    host: 'pixiv-image-tc.pwp.link',
+                },{
+                    responseType: 'arraybuffer',
+                })
+                .then(res=> {
+                    console.log(res)
+                    // let binaryData = []
+                    // binaryData.push(res.data)
+                    // let resUrl = window.URL.createObjectURL(new Blob(binaryData))
+                    let resUrl = window.URL.createObjectURL(new Blob([res.data]))
+                    console.log(resUrl)
+                    // this.imgUrl = resUrl.split('blob:')[1]
+                    // let resUrl = URL.createObjectURL(res.data)
                 })
             }
 
