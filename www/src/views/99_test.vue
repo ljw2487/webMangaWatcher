@@ -2,7 +2,15 @@
     <div>
         <div class="abc">
             <div class="a"></div>
-            <div class="b"></div>
+            <div class="b">
+                <div>
+                    <div>
+                        <span></span>
+                        <div></div>
+                    </div>
+                    <input type="text" name="" id="">
+                </div>
+            </div>
             <div class="c"></div>
         </div>
         <div class="def">
@@ -23,7 +31,11 @@
             :src="imgUrl"
         /> -->
         <img :src="imgUrl" alt="" style="width: 100px; height: 100px; background-color: brown;">
-        <!-- <img referer="https://pixivic.com/" src="https://o.acgpic.net/img-original/img/2022/05/10/00/23/01/98238060_p0.jpg"> -->
+        <!-- <img referrerpolicy='abc' src="https://o.acgpic.net/img-original/img/2022/05/11/00/00/08/98259485_p0.jpg"> -->
+        <div class="xxx1">
+            <img src="https://hi77.mangafuna.xyz:12001/biedangounijiangle/df529/16402704203754/h800x.webp">
+            <div>&nbsp;P 14 / 33</div>
+        </div>
     </div>
 </template>
 
@@ -206,8 +218,8 @@ import { mapState } from "vuex"
         background-color: blue;
     }
     .b {
-        // width: 20px;
-        background-color: rgb(255, 0, 0);
+        width: 300px;
+        background-color: rgb(82, 82, 82);
     }
     .c {
         width: 100px;
@@ -229,5 +241,23 @@ import { mapState } from "vuex"
 }
 .class2 {
     background-color: greenyellow;
+}
+.xxx1 {
+    position: relative;
+    &>img {
+        width: 100%;
+    }
+    &>div {
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        width: 55px;
+        height: 15px;
+        color: white;
+        font-size: 12px;
+        line-height: 15px;
+        background-color: rgb(0, 0, 0);
+        overflow: hidden;
+    }
 }
 </style>
