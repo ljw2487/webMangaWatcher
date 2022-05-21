@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3348934 */
-  src: url('iconfont.woff2?t=1652151298492') format('woff2'),
-       url('iconfont.woff?t=1652151298492') format('woff'),
-       url('iconfont.ttf?t=1652151298492') format('truetype');
+  src: url('iconfont.woff2?t=1653144410540') format('woff2'),
+       url('iconfont.woff?t=1653144410540') format('woff'),
+       url('iconfont.ttf?t=1653144410540') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,34 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.van-icon-qrcode-o:before {
+  content: "\e62c";
+}
+
+.van-icon-username-o:before {
+  content: "\e60e";
+}
+
+.van-icon-pwd-o:before {
+  content: "\e623";
+}
+
+.van-icon-hidepwd-o:before {
+  content: "\e624";
+}
+
+.van-icon-showpwd-o:before {
+  content: "\e625";
+}
+
+.van-icon-invite-o:before {
+  content: "\e658";
+}
+
+.van-icon-email-o:before {
+  content: "\e69d";
 }
 
 .van-icon-home:before {

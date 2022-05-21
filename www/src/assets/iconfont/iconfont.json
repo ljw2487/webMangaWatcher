@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "690718",
+      "name": "注册登录-验证码",
+      "font_class": "qrcode-o",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "1001663",
+      "name": "个人信息",
+      "font_class": "username-o",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "1002516",
+      "name": "密码",
+      "font_class": "pwd-o",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "1002517",
+      "name": "隐藏",
+      "font_class": "hidepwd-o",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "1002518",
+      "name": "显示",
+      "font_class": "showpwd-o",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "1506752",
+      "name": "邀请码",
+      "font_class": "invite-o",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
+      "icon_id": "1546609",
+      "name": "邮箱",
+      "font_class": "email-o",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
+    },
+    {
       "icon_id": "1002514",
       "name": "首页2",
       "font_class": "home",
