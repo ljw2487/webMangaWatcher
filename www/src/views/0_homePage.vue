@@ -101,7 +101,7 @@
                         <van-swipe :loop="false" :width="49" :show-indicators="false">
                             <van-swipe-item
                                 @click="clickTheme('all')"
-                                :style="{color:(activeTheme == 0 ? 'red' : '')}"
+                                :style="{color:(activeTheme == 0 ? '#40BF8E' : '')}"
                             >
                                 全部
                             </van-swipe-item>
@@ -110,13 +110,13 @@
                                 v-for="(item, index) in hotTheme" 
                                 :key="index" 
                                 :class="item.name.length>2 ? 'longerItem' : ''"
-                                :style="{color:(activeTheme == index+1 ? 'red' : '')}"
+                                :style="{color:(activeTheme == index+1 ? '#40BF8E' : '')}"
                             >
                                 {{item.name}}
                             </van-swipe-item>
                             <van-swipe-item 
                                 @click="clickTheme('more')"
-                                :style="{color:(activeTheme == 99 ? 'red' : '')}"
+                                :style="{color:(activeTheme == 99 ? '#40BF8E' : '')}"
                             >
                                 &lt;查看所有>
                             </van-swipe-item>
@@ -235,7 +235,7 @@ export default {
         },
         getMoreRecs(){
             console.log('start -> getMoreRecs()')
-            this.loadingRecs = false
+            this.loadingRecs = true
             this.loadRecs = 0
             this.recsOffset += 3
             console.log(this.recsOffset)
@@ -243,7 +243,7 @@ export default {
             .then((res) => {
                 // console.log(res)
                 this.recs = res.data.results
-                this.loadingRecs = true
+                this.loadingRecs = false
                 this.getMangaUpdate()
                 // console.log('Finish -> getMoreRecs()')
             })
@@ -596,7 +596,7 @@ export default {
                 width: 4.5rem !important;
             }
             .activeTheme {
-                color: #C81313;
+                color: #40BF8E;
             }
         }
         .allMangaOrdering {

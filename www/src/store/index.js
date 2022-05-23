@@ -21,7 +21,7 @@ export default new Vuex.Store({
         // getBackImgUrl() {
         //     this.axios.get(`${state.defaultLocalUrl}/setutime`, {
         //             params: {
-        //                 tag: "ロリ|萝莉|少女|JK|JS|JC",
+        //                 tag: "ロリ|JK|JS|JC",
         //                 size: "regular",
         //             },
         //         })

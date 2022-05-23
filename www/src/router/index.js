@@ -2,10 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import home from '../views/home.vue'
 import welcome from '../views/_welcome.vue';
-import login from '../views/0.0_login.vue'
-import homePage from '../views/0.1_homePage.vue'
+import login from '../views/_login.vue'
+
+import homePage from '../views/0_homePage.vue'
 import bookShelf from '../views/1_bookShelf.vue'
 import myPage from '../views/2_myPage.vue'
+
 import test from '../views/99_test.vue'
 
 Vue.use(VueRouter)
@@ -19,22 +21,38 @@ const routes = [
   {
     path: '/',
     name: 'welcome',
-    component: welcome
+    component: welcome,
+    meta: {
+      title: 'Welcome',
+      content: 'welcomepage'
+    }
   },
   {
     path: '/login',
     name: 'login',
-    component: login
+    component: login,
+    meta: {
+      title: 'Meteor-Manga -- Login',
+      content: 'loginpage'
+    }
   },
   {
     path: '/index',
     name: 'homePage',
-    component: homePage
+    component: homePage,
+    meta: {
+      title: 'Meteor-Manga -- index',
+      content: 'homepage'
+    }
   },
   {
     path: '/bookShelf',
     name: 'bookShelf',
-    component: bookShelf
+    component: bookShelf,
+    meta: {
+      title: 'Meteor-Manga -- bookShelf',
+      content: 'welcomepage'
+    }
   },
   {
     path: '/myPage',

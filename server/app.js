@@ -5,7 +5,7 @@ const md5 = require('md5')
 
 // const request = require('request')
 // const http = require("http")
-const https = require("https")
+// const https = require("https")
 // const axios = require('axios')
 
 const mysql = require('mysql')
@@ -17,6 +17,7 @@ const app = express()
 let network = require('./routes/network')
 let thirdparty = require('./routes/thirdparty')
 let pixiv = require('./routes/pixiv')
+let manga = require('./routes/manga')
 
 // 方法
 app.use(cors( config.allowCORS ))
@@ -27,10 +28,11 @@ app.use(express.static('public'))
 app.use('/', network)
 app.use('/', thirdparty)
 app.use('/pixiv', pixiv)
+app.use('/manga', manga)
 
 // JWT //////////////////////
 app.get('/gettoken', (req, res) => {
-    let  payload = {
+    let payload = {
         name: 'Alpha',
         userId: 1001,
         exp: Date.now()/1000 + 3600*24
