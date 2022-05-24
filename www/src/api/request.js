@@ -3,7 +3,8 @@ const requests = axios.create({
     baseURL: 'http://localhost:8088',
     timeout: 3000,
     headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+        // "Content-Type": "application/json",
     }
 })
 

@@ -31,11 +31,15 @@
             :src="imgUrl"
         /> -->
         <img :src="imgUrl" alt="" style="width: 100px; height: 100px; background-color: brown;">
+        
         <!-- <img referrerpolicy='abc' src="https://o.acgpic.net/img-original/img/2022/05/11/00/00/08/98259485_p0.jpg"> -->
-        <div class="xxx1">
+        
+        <button @click="getImgNew">new</button>
+        
+        <!-- <div class="xxx1">
             <img src="https://hi77.mangafuna.xyz:12001/biedangounijiangle/df529/16402704203754/h800x.webp">
             <div>&nbsp;P 14 / 33</div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -176,7 +180,7 @@ import { mapState } from "vuex"
                     console.error(err)
                 })
             },
-            getImgURL(imgUrl){
+            getImgURL(imgUrl) {
                 console.log(imgUrl)
                 this.axios.post(`${this.defaultLocalUrl}/pixiv/imgurl`, {
                     url: imgUrl,
@@ -189,13 +193,18 @@ import { mapState } from "vuex"
                     // let binaryData = []
                     // binaryData.push(res.data)
                     // let resUrl = window.URL.createObjectURL(new Blob(binaryData))
-                    let resUrl = window.URL.createObjectURL(new Blob([res.data]))
+                    let img = new Blob(
+                        [new Int8Array(res.data, 0)], //?
+                        { type: "image/png" }
+                    )
+                    // let resUrl = window.URL.createObjectURL(new Blob([res.data]))
+                    let resUrl = window.URL.createObjectURL(img)
+                    this.imgUrl = resUrl
                     console.log(resUrl)
                     // this.imgUrl = resUrl.split('blob:')[1]
                     // let resUrl = URL.createObjectURL(res.data)
                 })
             }
-
         },
         computed: {
             ...mapState([
@@ -236,7 +245,7 @@ import { mapState } from "vuex"
     }
 }
 .class1 {
-    width: 100px;
+    width: 100%;
     height: 100px;
 }
 .class2 {

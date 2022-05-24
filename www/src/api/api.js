@@ -6,7 +6,8 @@ export const api_network = (data) => {
         method: 'GET',
         params: {
 
-        }
+        },
+        headers: { }
     })
 }
 
@@ -15,5 +16,6 @@ export const api_homepage = (data) => {
         url: '',
         method: 'POST',
         data: data,
+        headers: { }
     })
 }

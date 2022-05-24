@@ -34,3 +34,8 @@ home.vue
 projectManga.pdman.json
 /document
 /logo
+/www/src/assets/background/*
+99_test.vue
+
+/server/manga.js
+/server/pixiv.js

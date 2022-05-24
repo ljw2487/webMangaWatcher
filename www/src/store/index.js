@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state: {
         defaultLocalUrl: "http://localhost:8088",
         currentMangaHost: "mapi.hotmangasg.com:12001",
+        mangaHost: "www.manga2022.com",
         mangaHostGroup: [],
         loginPageBackImgUrl: "",
     },
@@ -16,23 +17,6 @@ export default new Vuex.Store({
             state.mangaHostGroup = arr
             // console.log('PPP',arr, state.mangaHostGroup)
         },
-
-        // 生成背景图
-        // getBackImgUrl() {
-        //     this.axios.get(`${state.defaultLocalUrl}/setutime`, {
-        //             params: {
-        //                 tag: "ロリ|JK|JS|JC",
-        //                 size: "regular",
-        //             },
-        //         })
-        //         .then((res) => {
-        //             // console.log(res)
-        //             state.loginPageBackImgUrl = res.data.data[0].urls.regular
-        //         })
-        //         .catch((err) => {
-        //             console.error(err)
-        //         })
-        // },
     },
     actions: {},
     modules: {},
