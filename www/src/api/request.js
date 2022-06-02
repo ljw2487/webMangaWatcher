@@ -11,6 +11,7 @@ const requests = axios.create({
 // 请求拦截器
 requests.interceptors.request.use(config => {
     // config.headers.Authorization = window.localStorage.getItem('token')
+    // console.log('触发请求拦截器')
     return config
 }, (err) => {
     return Promise.reject('fail', err)
@@ -18,7 +19,8 @@ requests.interceptors.request.use(config => {
 
 // 响应拦截器
 requests.interceptors.response.use((res) => {
-    if (response.status === 200) {
+    // console.log('触发响应拦截器')
+    if (res.status === 200) {
         return Promise.resolve(res.data)
     } else {
         return Promise.reject(res)

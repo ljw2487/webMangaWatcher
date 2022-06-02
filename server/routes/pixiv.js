@@ -3,7 +3,7 @@ const router = express.Router()
 const HttpsClient = require("../models/httpsClient")
 
 
-// From: https://pixivic.com/
+// Goto: https://pixivic.com/
 // Host: https://api.huisq.site/ranks?page=1&date=2022-05-13&mode=day&pageSize=30
 router.get('/rank', (req, res) => {
     let queryData = req.query
@@ -25,7 +25,7 @@ router.get('/rank', (req, res) => {
     })
 })
 
-// From: https://api.lolicon.app/#/setu
+// Goto: https://api.lolicon.app/#/setu
 // Host: https://api.lolicon.app/setu/v2?size=original&size=regular
 router.get('/lolicon', (req, res) => {
     let tag = encodeURI(req.query.tag).split(',')

@@ -3,22 +3,26 @@ const router = express.Router()
 const HttpsClient = require("../models/httpsClient")
 
 
-// From: 
-// Host: 
+// Goto: www.manga2022.com 
+// Host: [req.query.mangaHost]
 router.get('/network', (req, res) => {
-
-    // HttpsClient.get({
-    //     host: 'api.huisq.site',
-    //     path,
-    //     headers: {},
-    // }).then(data => {
-    //     res.send(data)
-    // })
+    // console.log(req.query)
+    let port = req.query.mangaPort * 1
+    let path = '/api/v3/system/network2?platform=1'
+    HttpsClient.get({
+        host: req.query.mangaHost,
+        port,
+        path,
+        headers: {},
+        rejectUnauthorized: false
+    }).then(data => {
+        res.send(data)
+    })
 })
 
-// From: 
+// Goto: 
 // Host: 
-router.get('/lolicon', (req, res) => {
+router.get('/index', (req, res) => {
 
     // HttpsClient.get({
     //     host: 'api.lolicon.app',
