@@ -36,6 +36,7 @@ projectManga.pdman.json
 /logo
 /www/src/assets/background/*
 99_test.vue
+test*.html
 
 /server/manga.js
 /server/pixiv.js
